@@ -1,0 +1,14 @@
+%{
+%}
+%%
+[A-Z] {printf("\n it is uppercase\n");}
+.+ {printf("\nit is not uppercase\n");}
+%%
+int yywrap(void) {}
+int main()
+{
+printf("\nEnter the char : ");
+yylex();
+printf("\n");
+return 0;
+}
