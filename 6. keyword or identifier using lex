@@ -1,0 +1,15 @@
+%{
+%}
+%%
+if|else|while {printf("\nit is an keyword\n");}
+[a-zA-Z][a-zA-Z0-9]* {printf("\n it is an identifier\n");}
+%%
+int yywrap(void) {}
+int main()
+{
+printf("\nEnter the input to find identifier or keyword : ");
+yylex();
+
+printf("\n");
+return 0;
+}
