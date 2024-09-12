@@ -1,0 +1,14 @@
+%{
+%}
+%%
+[a-zA-Z0-9]+@[a-z]+".com"|".in" {printf("\n it is mail\n");}
+.+ {printf("\nit is not mail\n");}
+%%
+int yywrap(void) {}
+int main()
+{
+printf("\nEnter the mail : ");
+yylex();
+printf("\n");
+return 0;
+}
