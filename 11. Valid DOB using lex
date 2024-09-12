@@ -1,0 +1,21 @@
+%{
+#include <stdio.h>
+int valid = 0;
+int yr = 0;
+%}
+%%
+([0-2][0-9]|3[0-1])\/(0[13578]|1[012])\/([0-9]{4}) {printf("\n it is valid date\n); }
+([0-2][0-9]|30)\/(0[469]|1[012])\/([0-9]{4}) {printf("\n it is valid date\n); }
+.+ {printf("\n it is invalid date\n); }
+%%
+int yywrap() 
+{
+    return 1;
+}
+int main() 
+{
+yylex();
+if (valid) printf("It is a valid date\n");
+else printf("It is not a valid date\n");
+return 0;
+}
