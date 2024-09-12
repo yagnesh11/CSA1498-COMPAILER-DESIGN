@@ -1,0 +1,18 @@
+%{
+    #include <string.h>
+	char word[10];
+%}
+%%
+[a-zA-Z0-9]+ {if(strcmp(word,yytext)==0){fprintf(yyout,"%s","MOON");} else {fprintf(yyout,"%s",yytext);}}
+.|\n fprintf(yyout,"%s",yytext);
+%%
+int yywrap(void) {}
+int main()
+{
+    printf("Enter the Word to replace:");
+    scanf("%s",word);
+	yyin=fopen("sample1.txt","r");
+	yyout=fopen("out1.txt","w");
+	yylex();
+	return 0;
+}
