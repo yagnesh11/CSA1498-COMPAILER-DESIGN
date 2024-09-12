@@ -1,0 +1,13 @@
+%{
+%}
+%%
+abc printf("ABC");
+[d-zA-Z0-9]+ printf("%s",yytext);
+%%
+int yywrap(void){}
+int main()
+{
+	printf("Enter the Text:");
+	yylex();
+	return 0;
+}
