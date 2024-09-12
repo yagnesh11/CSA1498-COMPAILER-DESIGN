@@ -1,0 +1,16 @@
+%{
+	int wc=0,cc=0,lc=0;
+%}
+%%
+[a-zA-Z0-9\(\)\<\>\:\%\+\=\;,\{\}\#\."\&] {cc+=1;}
+" " {wc+=1;}
+\n {lc+=1;}
+%%
+int yywrap(void) {}
+int main()
+{
+	yyin=fopen("code.txt","r");
+	yylex();
+	printf("Number of Characters:%d\nNumber of Words:%d\nNumber of Lines:%d",cc,wc,lc);
+	return 0;
+}
