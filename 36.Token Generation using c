@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int check(char *s)
+{
+	for(int i=0;i<strlen(s);i++)
+	{
+		if(!(s[i]>='0' && s[i]<='9') && !(s[i]>='a' && s[i]<='z')) return 0;
+	}
+	return 1;
+}
+int checkdigit(char *s)
+{
+	for(int i=0;i<strlen(s);i++)
+	{
+		if(!(s[i]>='0' && s[i]<='9')) return 0;
+	}
+	return 1;
+}
+void validatetokens(char *s)
+{
+	char c;
+	if(strlen(s)==1) c=s[0];
+	if(strcmp(s,"while")==0 || strcmp(s,"int")==0 || strcmp(s,"else")==0 || strcmp(s,"main")==0 || strcmp(s,"if")==0)
+	{
+		printf("Keyword= %s\n",s);
+	}
+	else if(!(s[0]>='0' && s[0]<='9') && check(s)) printf("Identifier= %s\n",s);
+	else if(checkdigit(s)) printf("Constant= %s\n",s);
+	else if(c=='+' || c=='-' || c=='*' || c=='=' || c=='/') printf("Operator= %c\n",c);
+	else printf("Punctuator= %c\n",c);
+}
+int main()
+{
+	char a[20],temp[20][20];
+	int k=0,l=0;
+	printf("Enter the Expression:");
+	scanf("%[^\n]s",a);
+	for(int i=0;i<strlen(a);i++)
+	{
+		if(((a[i]>='a' && a[i]<='z')||(l!=0 && a[i]>='0' && a[i]<='9')))
+		{
+			temp[k][l++]=a[i];
+		}
+		else if(a[i]>='0' && a[i]<='9') temp[k][l++]=a[i];
+		else
+		{
+			temp[k++][l]='\0';
+			l=0;
+			if(a[i]==' ') continue;
+			temp[k][l++]=a[i];
+			temp[k++][l]='\0';
+			l=0;
+		}
+	}
+	for(int i=0;i<k;i++)
+	{
+		if(strcmp(temp[i],"\0")==0) continue;
+		validatetokens(temp[i]);
+	}
+}
