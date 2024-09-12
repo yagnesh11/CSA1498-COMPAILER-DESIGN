@@ -1,0 +1,17 @@
+%{
+%}
+%%
+int|main|void|<stdio.h>|while|for|if|else|return {}
+[a-zA-Z][a-zA-Z0-9]* printf("Identifier=%s\n",yytext);
+[0-9]+ printf("Constant=%s\n",yytext);
+[0-9]+\.[0-9]+ printf("Constant=%s\n",yytext);
+\"[0-9A-Za-z" "\!]+\" printf("Literal String=%s\n",yytext);
+.|\n {}
+%%
+int yywrap(void) {}
+int main()
+{
+	yyin=fopen("sample.txt","r");
+	yylex();
+	return 0;
+}
